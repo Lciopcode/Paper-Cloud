@@ -1,0 +1,56 @@
+# 依赖与构建产物
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Python 虚拟环境（GPU 语义层用；本机没有 conda，改用 venv）
+.venv/
+venv/
+
+# 本地下载的嵌入模型（bge-m3 约 2.2 GB，绝不入库）
+models/
+
+# 语料与中间产物（体量数 GB，绝不入库）
+data/raw/
+data/corpus/
+public/data/
+!public/data/.gitkeep
+
+# 自检截图与无头浏览器 profile
+shots/
+
+# 本地环境
+.env
+.env.local
+*.log
+
+# �����Ŀɰ�Ǩ���ϣ�Լ 2 GB������ pipeline/export-text.mjs �ؽ���
+text/
+# GPU 中间产物（emb/ cluster/ 是架构文档里的旧名；脚本实际写在 semantic/）
+emb/
+cluster/
+semantic/
+
+
+# 抓取器的单实例锁（运行时产物）
+data/cites/.harvest.lock
+
+# Python 字节码（机器相关，绝不该入库 —— 之前误入了 8 个 .pyc）
+__pycache__/
+*.pyc
+
+# 临时/一次性脚本（下划线开头 = 我的临时产物，不入库）
+pipeline/_*.mjs
+deploy/_*.mjs
+docs/_*.mjs
+# ⚠️ 提交信息文件 —— 必须忽略！
+# 曾经因为用 `git add -A` 时提交信息文件还在仓库里，把它一起提交了进去
+# （.cmsg.txt / .commitmsg.txt 都中过招）。
+# 更稳妥的做法：把提交信息写到**仓库外**（见 CLAUDE.md / 交接文档）。
+.cmsg.txt
+.commitmsg.txt
+
+data/refs-cache/
+data/refs/
+# OpenAlex 反查验收的运行时证据（after/baseline/urltest.json，可随时重跑）
+data/probe-openalex-cites/

@@ -1,0 +1,42 @@
+# 论文云 · 语义层 GPU 依赖
+#
+# 目标机器：单卡 RTX 4090（24 GB）。以下版本是**配套测试过**的一组，不要随意升级：
+#   · torch 2.4.x 的 cu124 wheel 与 CUDA 12.4 驱动兼容性最好；
+#   · faiss-gpu 只在 conda-forge 上有官方 wheel，pip 装不了（见 setup-4090.md）；
+#   · sentence-transformers 3.x 才支持 Matryoshka 的 `truncate_dim`。
+#
+# 安装：
+#   conda create -n lunyun python=3.11 -y && conda activate lunyun
+#   conda install -c conda-forge faiss-gpu=1.8.0 -y
+#   pip install -r requirements-gpu.txt
+
+# --- 深度学习 ---
+torch==2.4.1
+torchvision==0.19.1
+# 若上面的 torch 在本机 CUDA 上不可用，改用官方索引：
+#   pip install torch==2.4.1 --index-url https://download.pytorch.org/whl/cu124
+
+# --- 文本嵌入 ---
+sentence-transformers==3.2.1     # 支持 truncate_dim（Matryoshka）
+transformers==4.45.2
+tokenizers==0.20.1
+
+# --- 数值与数据 ---
+numpy==1.26.4                    # 不要用 2.x：faiss 与部分轮子在 2.x 上会崩
+pandas==2.2.3
+scipy==1.14.1
+scikit-learn==1.5.2             # MiniBatchKMeans / HDBSCAN 的替代
+pyarrow==17.0.0                 # 分片落盘用
+
+# --- 图与社区发现 ---
+igraph==0.11.8
+leidenalg==0.10.2
+networkx==3.4.2
+python-louvain==0.16            # leidenalg 装不上时的退路
+
+# --- 进度与校验 ---
+tqdm==4.66.5
+xxhash==3.5.0                   # 分片完整性校验
+
+# --- 注意：faiss-gpu 用 conda 装，不要写在这里 ---
+# faiss-gpu==1.8.0

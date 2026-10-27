@@ -1,0 +1,69 @@
+{
+  "name": "lunyun2",
+  "private": true,
+  "version": "0.3.2",
+  "type": "module",
+  "description": "论文云 · Paper Cloud —— 把 arXiv 全量开放论文组织成八层学术层级的可漫游宇宙；虚空里是「一切可能的论文标题」，编号 ⇄ 标题双射，算出而非存储。",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "papers",
+    "arxiv",
+    "knowledge-graph",
+    "citation-network",
+    "three.js",
+    "webgl",
+    "react-three-fiber",
+    "visualization"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 5200 --strictPort",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "serve": "node --max-old-space-size=8192 deploy/serve.mjs",
+    "export:text": "node pipeline/export-text.mjs",
+    "build:spine": "node --max-old-space-size=8192 pipeline/build-spine.mjs",
+    "verify:e2e": "node deploy/verify.mjs",
+    "build:meta": "node --max-old-space-size=8192 pipeline/build-meta.mjs",
+    "build:search": "node --max-old-space-size=8192 pipeline/build-search.mjs",
+    "build:relations": "node --max-old-space-size=8192 pipeline/build-relations.mjs",
+    "build:cites": "node pipeline/build-cites.mjs",
+    "harvest:cites": "node --max-old-space-size=4096 pipeline/harvest-cites.mjs",
+    "harvest:openalex": "node --max-old-space-size=4096 pipeline/harvest-openalex.mjs",
+    "verify:all": "node deploy/verify-all.mjs",
+    "verify:mobile": "node deploy/verify-mobile.mjs",
+    "verify:keys": "node deploy/verify-keys.mjs",
+    "verify:cites": "node deploy/verify-cites.mjs",
+    "verify:css": "node deploy/verify-css.mjs",
+    "verify:drill": "node deploy/verify-drill.mjs",
+    "verify:perf": "node deploy/verify-perf-auto.mjs",
+    "verify:permalink": "node deploy/verify-permalink.mjs",
+    "verify:a11y": "node deploy/verify-a11y.mjs",
+    "verify:layout": "node deploy/verify-layout.mjs",
+    "lint": "node deploy/lint-embedded.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/three": "^0.169.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.114.3",
+    "@react-three/fiber": "^8.17.10",
+    "@react-three/postprocessing": "^2.19.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.169.0",
+    "zustand": "^5.0.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

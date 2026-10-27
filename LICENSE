@@ -1,0 +1,167 @@
+# PolyForm Noncommercial License 1.0.0
+
+Required Notice: Copyright © 2026 论文云 / Paper Cloud (arXiv 305 万篇论文宇宙)
+
+<https://polyformproject.org/licenses/noncommercial/1.0.0>
+
+---
+
+本仓库（论文云）采用 **PolyForm Noncommercial License 1.0.0**。
+
+⚠️ 本仓库**包含移植自第三方开源项目的代码**，见文末"第三方组件"一节。
+   任何拿到本仓库副本的人，都同时拿到那一节里的 Required Notice 与许可条款原文。
+
+---
+
+## Acceptance
+
+In order to get any license under these terms, you must agree to them as both
+strict obligations and conditions to all your licenses.
+
+## Copyright License
+
+The licensor grants you a copyright license for the software to do everything
+you might do with the software that would otherwise infringe the licensor's
+copyright in it for any permitted purpose. However, you may only distribute the
+software according to [Distribution License](#distribution-license) and make
+changes or new works based on the software according to [Changes and New Works
+License](#changes-and-new-works-license).
+
+## Distribution License
+
+The licensor grants you an additional copyright license to distribute copies of
+the software. Your license to distribute covers distributing the software with
+changes and new works permitted by [Changes and New Works
+License](#changes-and-new-works-license).
+
+## Notices
+
+You must ensure that anyone who gets a copy of any part of the software from you
+also gets a copy of these terms or the URL for them above, as well as copies of
+any plain-text lines beginning with `Required Notice:` that the licensor
+provided with the software. For example:
+
+> Required Notice: Copyright Yoyodyne, Inc. (http://example.com)
+
+## Changes and New Works License
+
+The licensor grants you an additional copyright license to make changes and new
+works based on the software for any permitted purpose.
+
+## Patent License
+
+The licensor grants you a patent license for the software that covers patent
+claims the licensor can license, or becomes able to license, that you would
+infringe by using the software.
+
+## Noncommercial Purposes
+
+Any noncommercial purpose is a permitted purpose.
+
+## Personal Uses
+
+Personal use for research, experiment, and testing for the benefit of public
+knowledge, personal study, private entertainment, hobby projects, amateur
+pursuits, or religious observance, without any anticipated commercial
+application, is use for a permitted purpose.
+
+## Noncommercial Organizations
+
+Use by any charitable organization, educational institution, public research
+organization, public safety or health organization, environmental protection
+organization, or government institution is use for a permitted purpose
+regardless of the source of funding or obligations resulting from the funding.
+
+## Fair Use
+
+You may have "fair use" rights for the software under the law. These terms do
+not limit them.
+
+## No Other Rights
+
+These terms do not allow you to sublicense or transfer any of your licenses to
+anyone else, or prevent the licensor from granting licenses to anyone else.
+These terms do not imply any other licenses.
+
+## Patent Defense
+
+If you make any written claim that the software infringes or contributes to
+infringement of any patent, your patent license for the software granted under
+these terms ends immediately. If your company makes such a claim, your patent
+license ends immediately for work on behalf of your company.
+
+## Violations
+
+The first time you are notified in writing that you have violated any of these
+terms, or done anything with the software not covered by your licenses, your
+licenses can nonetheless continue if you come into full compliance with these
+terms, and take practical steps to correct past violations, within 32 days of
+receiving notice. Otherwise, all your licenses end immediately.
+
+## No Liability
+
+***As far as the law allows, the software comes as is, without any warranty or
+condition, and the licensor will not be liable to you for any damages arising
+out of these terms or the use or nature of the software, under any kind of
+legal claim.***
+
+## Definitions
+
+The **licensor** is the individual or entity offering these terms, and the
+**software** is the software the licensor makes available under these terms.
+
+**You** refers to the individual or entity agreeing to these terms.
+
+**Your company** is any legal entity, sole proprietorship, or other kind of
+organization that you work for, plus all organizations that have control over,
+are under the control of, or are under common control with that organization.
+**Control** means ownership of substantially all the assets of an entity, or
+the power to direct its management and policies by vote, contract, or otherwise.
+Control can be direct or indirect.
+
+**Your licenses** are all the licenses granted to you for the software under
+these terms.
+
+**Use** means anything you do with the software requiring one of your licenses.
+
+---
+
+## 第三方组件（Third-Party Components）
+
+### 诗云 / Poetry Cloud — `github.com/Cohenjikan/shiyun`
+
+```
+Required Notice: Copyright © 2026 Cohenjikan — 诗云 / Poetry Cloud
+<https://github.com/Cohenjikan/shiyun>
+License: PolyForm Noncommercial License 1.0.0
+<https://polyformproject.org/licenses/noncommercial/1.0.0>
+```
+
+**论文云的哪些部分是移植自它的**（不是"仅借鉴思想"，如实写）：
+
+| 我方文件 | 移植内容 | 程度 |
+|---|---|---|
+| `src/three/FlyCamera.tsx` | `FlyControls.tsx` 的相机模型：速度档 `3.0` / `1.22` / `0.82`、上下限 `0.1~80`、`LOOK_SENS 0.0032`、`ROLL_RATE 1.2`、`LOCK_DIST 18`、阻尼 `0.0025/0.0015`、轨道缩放 `1.12/0.89` | 结构照搬，域内改接论文拾取 |
+| `src/three/touchGesture.ts` | `touchGesture.ts` 的双指手势数学（质心、捏合距离、推进映射、捏合调速钳制） | 逐函数移植（行级重合 43%） |
+| `src/three/Galaxy.tsx` | Bloom 参数 `1.4 / 0.1 / 0.28 / 0.85 / mipmapBlur`（与 `App.tsx` 逐字相同）；星点尺寸标定 `900.0 / -mv.z` | 参数照抄 |
+| `src/three/shaders.ts` | 星点/丝线/球壳的 GLSL 结构与若干行 | 结构参考 + 行级重合（12%） |
+| `src/three/galaxySpin.ts` | 自转/装饰角速率写法与常量命名（`DECOR_RATE`） | 行级重合（16%） |
+| `src/three/geometry.ts` `points.ts` | 星系配方常量（盘厚、臂宽、核球比例、4 段色板）、双线性噪声插值 | 常量与工具函数 |
+| `src/three/disc.ts` 对应部分 | `createRadialGradient` 柔光贴图 | 惯例写法 |
+
+**行级证据**（`_scratch/probe-code-overlap.mjs`，规范化后长度 ≥ 12 的行）：
+我方 `src` 共 7,329 行，其中 **337 行（4.60%）与诗云逐字相同**。
+其中一部分是社区通用写法（`gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);`、
+`import { EffectComposer, Bloom } from "@react-three/postprocessing";`），
+但 `DECOR_RATE` 自转行、双线性噪声插值、捏合调速钳制这类**带相同标识符名**的重合不是通用写法。
+
+**为什么这是允许的**：PolyForm Noncommercial 1.0.0 的
+[Noncommercial Purposes](#noncommercial-purposes) 与
+[Noncommercial Organizations](#noncommercial-organizations) 明确把
+"非商业目的"与"教育机构/公共研究机构的使用"列为 permitted purpose，
+本作品参加的是非商业竞赛、不作商业分发。
+[Notices](#notices) 要求的"随副本附带条款与 Required Notice"由本文档履行。
+[Changes and New Works License](#changes-and-new-works-license) 允许基于它做修改与新作品。
+
+**注意**：[No Other Rights](#no-other-rights) —— 我们**不能**把诗云的许可再授权给别人。
+若本作品将来要商业化，必须替换掉上表全部内容或另行取得商业许可。
